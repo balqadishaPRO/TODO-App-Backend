@@ -11,4 +11,4 @@ COPY . .
 RUN mvn clean package
 
 # Command to run the jar file
-CMD ["java", "-jar", "target/TODO-App-Backend-0.0.1-SNAPSHOT.jar"]
+CMD ["java", "-jar", "target/todo-0.0.1-SNAPSHOT.jar"]
