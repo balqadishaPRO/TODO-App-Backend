@@ -34,3 +34,6 @@ build/
 
 ### Allow .jar Files ###
 !target/*.jar
+
+### ENV ###
+.env
