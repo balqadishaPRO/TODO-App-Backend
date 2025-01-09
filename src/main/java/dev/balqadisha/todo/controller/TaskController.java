@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 // The controller is part of the presentation layer in the Spring Boot MVC
 // MVC - Model-View-Control
@@ -55,5 +56,27 @@ public class TaskController {
         // noContent() - means no body in the response
         // build() - constructs the ResponseEntity (in this case with status 204 NO CONTENT)
         return ResponseEntity.noContent().build();
+    }
+
+    @PatchMapping("/{id}/status")
+    public ResponseEntity<Task> updateTaskStatus(@PathVariable String id, @RequestBody Map<String, Boolean> payload) {
+        boolean completed = payload.get("completed");
+
+        Task updateTask = taskService.updateTaskStatus(id, completed);
+
+        return ResponseEntity.ok(updateTask);
+    }
+
+    @PatchMapping("/{id}/description")
+    public ResponseEntity<Task> updateTaskDescription(@PathVariable String id, @RequestBody Map<String, String> payload) {
+        String description = payload.get("description");
+
+        if(description == null || description.isBlank()) {
+            return ResponseEntity.badRequest().body(null); // Handle invalid input
+        }
+
+        Task updateTask = taskService.updateTaskDescription(id, description);
+
+        return ResponseEntity.ok(updateTask);
     }
 }

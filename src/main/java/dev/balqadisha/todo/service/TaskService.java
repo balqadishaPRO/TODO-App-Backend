@@ -31,4 +31,26 @@ public class TaskService {
         taskRepository.deleteById(id);
         // if id is undefined, does nothing
     }
+
+    public Task updateTaskStatus(String id, boolean completed) {
+        Task task = taskRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Task with id: " + id + " doesn't exist"));
+
+        task.setCompleted(completed);
+
+        return taskRepository.save(task);
+    }
+
+    public Task updateTaskDescription(String id, String description) {
+        if(description == null || description.isBlank()) {
+            throw new IllegalArgumentException("Description cannot be empty!");
+        }
+
+        Task task = taskRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Task with id: " + id + " doesn't exist"));
+
+        task.setDescription(description);
+
+        return taskRepository.save(task);
+    }
 }
