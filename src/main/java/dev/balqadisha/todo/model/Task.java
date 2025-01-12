@@ -22,6 +22,7 @@ public class Task {
 
     // Uses MongoDB to generate random id's
     @Id
+    private String header;
     private String id;
     private String description;
     private boolean completed;
@@ -36,6 +37,10 @@ public class Task {
 
     public boolean isCompleted() {
         return completed;
+    }
+
+    public String getHeader() {
+        return header;
     }
 
     public void setCompleted(boolean completed) {
