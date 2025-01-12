@@ -23,6 +23,9 @@ public class TaskService {
     }
 
     public Task addTask(Task task) {
+        if(task.getHeader() == null || task.getHeader().trim().isEmpty()) {
+            task.setHeader("Untitled Task"); // Set a default value if no header is provided
+        }
         return taskRepository.save(task);
         // Adds a new task or updates an existing task if the id already exists
     }

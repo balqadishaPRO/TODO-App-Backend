@@ -22,8 +22,8 @@ public class Task {
 
     // Uses MongoDB to generate random id's
     @Id
-    private String header;
     private String id;
+    private String header;
     private String description;
     private boolean completed;
 
@@ -41,6 +41,10 @@ public class Task {
 
     public String getHeader() {
         return header;
+    }
+
+    public void setHeader(String header) {
+        this.header = header;
     }
 
     public void setCompleted(boolean completed) {
