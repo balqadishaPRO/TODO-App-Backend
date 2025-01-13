@@ -26,6 +26,7 @@ public class Task {
     private String header;
     private String description;
     private boolean completed;
+    private String color;
 
     public String getId() {
         return id;
@@ -37,6 +38,10 @@ public class Task {
 
     public boolean isCompleted() {
         return completed;
+    }
+
+    public String getColor() {
+        return color;
     }
 
     public String getHeader() {
@@ -53,5 +58,9 @@ public class Task {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
     }
 }
