@@ -67,7 +67,7 @@ public class TaskController {
         return ResponseEntity.ok(updateTask);
     }
 
-    @PatchMapping("/{id}/description")
+    @PatchMapping("/{id}/details")
     public ResponseEntity<Task> updateTaskDescription(@PathVariable String id, @RequestBody Map<String, String> payload) {
         String header = payload.get("header");
         String description = payload.get("description");
