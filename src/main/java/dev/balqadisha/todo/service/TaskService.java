@@ -44,15 +44,21 @@ public class TaskService {
         return taskRepository.save(task);
     }
 
-    public Task updateTaskDescription(String id, String description) {
-        if(description == null || description.isBlank()) {
-            throw new IllegalArgumentException("Description cannot be empty!");
+    public Task updateTaskDetails(String id, String description, String header) {
+        if(description == null || description.isBlank() && ((header == null || header.isBlank()))) {
+            throw new IllegalArgumentException("Header and description cannot both be empty!");
         }
 
         Task task = taskRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Task with id: " + id + " doesn't exist"));
 
-        task.setDescription(description);
+        if(header != null && !header.isBlank()) {
+            task.setHeader(header);
+        }
+
+        if(description != null && !description.isBlank()) {
+            task.setDescription(description);
+        }
 
         return taskRepository.save(task);
     }

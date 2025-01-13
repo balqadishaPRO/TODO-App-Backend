@@ -69,14 +69,15 @@ public class TaskController {
 
     @PatchMapping("/{id}/description")
     public ResponseEntity<Task> updateTaskDescription(@PathVariable String id, @RequestBody Map<String, String> payload) {
+        String header = payload.get("header");
         String description = payload.get("description");
 
-        if(description == null || description.isBlank()) {
-            return ResponseEntity.badRequest().body(null); // Handle invalid input
+        if((header == null || header.isBlank()) && (description == null || description.isBlank())) {
+            return ResponseEntity.badRequest().body(null);
         }
 
-        Task updateTask = taskService.updateTaskDescription(id, description);
+        Task updatedTask = taskService.updateTaskDetails(id, header, description);
 
-        return ResponseEntity.ok(updateTask);
+        return ResponseEntity.ok(updatedTask);
     }
 }
