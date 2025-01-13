@@ -44,7 +44,7 @@ public class TaskService {
         return taskRepository.save(task);
     }
 
-    public Task updateTaskDetails(String id, String description, String header) {
+    public Task updateTaskDetails(String id, String header, String description) {
         if(description == null || description.isBlank() && ((header == null || header.isBlank()))) {
             throw new IllegalArgumentException("Header and description cannot both be empty!");
         }
